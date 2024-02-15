@@ -1,0 +1,22 @@
+
+///////////////////////
+CJ Car Rental Services
+   (Rent a Car)
+///////////////////////
+Customer Name: gfdg
+Car Brand: FOTON TRAVELLER XL
+Plate No.: NNL902
+Downpayment: ₱7658
+Remaining Balance: ₱-7658.0
+///////////////////////
+
+///////////////////////
+CJ Car Rental Services
+   (Rent a Car)
+///////////////////////
+Customer Name:  4234
+Car Brand: TOYOTA HILUX CONQUEST
+Plate No.: JKQ4230
+Downpayment: ₱9789789789
+Remaining Balance: ₱-9.789746589E9
+///////////////////////

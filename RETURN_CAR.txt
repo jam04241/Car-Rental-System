@@ -1,0 +1,11 @@
+
+///////////////////////
+CJ Car Rental Services
+  (Return a Car)
+///////////////////////
+Customer Name: gfdg
+Car Brand: FOTON TRAVELLER XL
+Plate No.: NNL902
+nPay: ₱432562.00
+Change: ₱440220.00
+///////////////////////
