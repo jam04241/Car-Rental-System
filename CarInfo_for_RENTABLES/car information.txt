@@ -1,0 +1,13 @@
+        Specifications
+Brand                     :
+Type                      :
+Transmission              :
+Dimension(Length / Height):
+Weight(T-tons)            :
+Engine Type/Power         :
+Capacity Seats            :
+Fuel Type                 :
+	Rent
+Rent per day              :
+Rent per Week             :
+Rent per Month            :
