@@ -9,3 +9,14 @@ Plate No.: NNL902
 nPay: ₱432562.00
 Change: ₱440220.00
 ///////////////////////
+
+///////////////////////
+CJ Car Rental Services
+  (Return a Car)
+///////////////////////
+Customer Name: Josh Andrei Magcasdasd
+Car Brand: FORD RANGER RAPTOR
+Plate No.: GMK4567
+Pay: ₱22564.00
+Change: ₱00.00
+///////////////////////

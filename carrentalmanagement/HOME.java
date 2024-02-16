@@ -257,34 +257,31 @@ public class HOME extends javax.swing.JFrame {
 
         if(respond == JOptionPane.YES_OPTION){
             this.dispose();
-            JOptionPane.showConfirmDialog(null, "THANK YOU FOR USING OUR JAVA MENU SYSTEM","Notice",JOptionPane.YES_NO_OPTION);
+            JOptionPane.showConfirmDialog(null, "THANK YOU FOR USING OUR JAVA CAR RENTAL SYSTEM","Notice",JOptionPane.YES_NO_OPTION);
             LOGIN login = new LOGIN();
             login.setVisible(rootPaneCheckingEnabled);
         }
     }//GEN-LAST:event_logoutbtnActionPerformed
 
     private void rentbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentbtnActionPerformed
-        if(evt.getSource()==rentbtn){
             this.dispose();
             RENT_RETURN rent = new RENT_RETURN();
             rent.setVisible(rootPaneCheckingEnabled);
-        }
+
     }//GEN-LAST:event_rentbtnActionPerformed
 
     private void homebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homebtnActionPerformed
-        if(evt.getSource()==homebtn){
             this.dispose();
             HOME home = new HOME();
             home.setVisible(rootPaneCheckingEnabled);
-        }
+        
     }//GEN-LAST:event_homebtnActionPerformed
 
     private void rentablebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentablebtnActionPerformed
-        if(evt.getSource()== rentablebtn){
             this.dispose();
             RENTABLES rentables = new RENTABLES();
             rentables.setVisible(rootPaneCheckingEnabled);
-        }
+  
     }//GEN-LAST:event_rentablebtnActionPerformed
 
     /**

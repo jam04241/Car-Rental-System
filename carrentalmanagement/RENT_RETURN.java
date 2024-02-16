@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Image;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -32,7 +33,9 @@ public class RENT_RETURN extends javax.swing.JFrame {
     public static Double total = calcu - inputValue;
     public static String dpay;
     public static Double rentday = 0.0;
-
+    
+    public static final double[] DOWNPAYMENT_LIMITS = {1500.00, 3500.00, 5500.00};
+    public static double maxDownpayment;
     public static int days;
     
     public RENT_RETURN() {
@@ -178,7 +181,7 @@ public class RENT_RETURN extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Car Brand", "Name", "Return Date"
+                "Car Brand", "Customer", "Return Date"
             }
         ));
         jTable2.setDragEnabled(true);
@@ -261,6 +264,7 @@ public class RENT_RETURN extends javax.swing.JFrame {
         });
 
         savebtn1.setText("Save");
+        savebtn1.setEnabled(false);
         savebtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 savebtn1ActionPerformed(evt);
@@ -268,12 +272,14 @@ public class RENT_RETURN extends javax.swing.JFrame {
         });
 
         clearbtn1.setText("Clear");
+        clearbtn1.setEnabled(false);
         clearbtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearbtn1ActionPerformed(evt);
             }
         });
 
+        namefield1.setEnabled(false);
         namefield1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 namefield1ActionPerformed(evt);
@@ -306,19 +312,24 @@ public class RENT_RETURN extends javax.swing.JFrame {
         duedate_lbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         duedate_lbl1.setText("Due Date:");
 
+        jDateChooser1.setEnabled(false);
+
+        jDateChooser2.setEnabled(false);
         jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDateChooser2PropertyChange(evt);
             }
         });
 
+        dpfield.setEnabled(false);
         dpfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dpfieldActionPerformed(evt);
             }
         });
 
-        CarPic.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CarPic.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        CarPic.setText("[Select a Car Brand]");
 
         carplate1_lbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         carplate1_lbl1.setText("Plate No.:");
@@ -326,8 +337,8 @@ public class RENT_RETURN extends javax.swing.JFrame {
         carplate1_lbl2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         carplate1_lbl2.setText("Car:");
 
-        numberplate1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        numberplate1.setText("Plate No.");
+        numberplate1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        numberplate1.setText("[Select a Car Brand]");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -361,9 +372,9 @@ public class RENT_RETURN extends javax.swing.JFrame {
                                                 .addComponent(clearbtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(numberplate1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(carplate1_lbl2)
-                                    .addComponent(CarPic, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(CarPic, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(numberplate1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(204, 204, 204)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -593,6 +604,16 @@ public class RENT_RETURN extends javax.swing.JFrame {
     }
         return total;
     }
+    
+    public void enablecomponents(){
+        boolean isenabled = true;
+            namefield1.setEnabled(isenabled);           
+            jDateChooser1.setEnabled(isenabled);    
+            jDateChooser2.setEnabled(isenabled);     
+            dpfield.setEnabled(isenabled);    
+            savebtn1.setEnabled(isenabled);     
+            clearbtn1.setEnabled(isenabled);  
+    }
     private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
         int respond = JOptionPane.showConfirmDialog(null, "Do you wish to exit?","Notice",JOptionPane.YES_NO_OPTION);
 
@@ -605,27 +626,24 @@ public class RENT_RETURN extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutbtnActionPerformed
 
     private void homebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homebtnActionPerformed
-        if(evt.getSource()==homebtn){
             this.dispose();
             HOME home = new HOME();
             home.setVisible(rootPaneCheckingEnabled);
-        }
+
     }//GEN-LAST:event_homebtnActionPerformed
 
     private void rentablebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentablebtnActionPerformed
-        if(evt.getSource()== rentablebtn){
             this.dispose();
             RENTABLES rentables = new RENTABLES();
             rentables.setVisible(rootPaneCheckingEnabled);
-        }
+        
     }//GEN-LAST:event_rentablebtnActionPerformed
 
     private void rentbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentbtnActionPerformed
-        if(evt.getSource()==rentbtn){
             this.dispose();
             RENT_RETURN rent = new RENT_RETURN();
             rent.setVisible(rootPaneCheckingEnabled);
-        }
+        
     }//GEN-LAST:event_rentbtnActionPerformed
 
     private void return1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return1ActionPerformed
@@ -640,7 +658,8 @@ public class RENT_RETURN extends javax.swing.JFrame {
         boolean validInput = false;
         do {
             try {
-                String remainblnc = JOptionPane.showInputDialog(null, "The Car has been returned" + "\nRemaining balance: ₱" + df.format(total), "NOTICE", JOptionPane.OK_CANCEL_OPTION);
+                String remainblnc = JOptionPane.showInputDialog(null, "The Car has been returned" + "\nRemaining balance: ₱" + df.format(total), 
+                                                                      "NOTICE", JOptionPane.OK_CANCEL_OPTION);
                 remainblnc1 = Double.parseDouble(remainblnc);
                 remainblnc2 = remainblnc1 - total;
                 validInput = true;
@@ -672,7 +691,8 @@ public class RENT_RETURN extends javax.swing.JFrame {
                             + "\nChange: ₱" + df.format(remainblnc2)); 
         bufferedwriter.append("\n///////////////////////\n");
         bufferedwriter.close();
-    } catch (IOException e) {
+    } 
+    catch (IOException e) {
         e.printStackTrace();
     }
 
@@ -680,6 +700,7 @@ public class RENT_RETURN extends javax.swing.JFrame {
     model2.addRow(new Object[]{
         jTable1.getValueAt(jTable1.getSelectedRow(), 0),
         jTable1.getValueAt(jTable1.getSelectedRow(), 1),
+        jTable1.getValueAt(jTable1.getSelectedRow(), 2),
         jTable1.getValueAt(jTable1.getSelectedRow(), 3)
     });
 
@@ -701,36 +722,51 @@ public class RENT_RETURN extends javax.swing.JFrame {
     }//GEN-LAST:event_clearbtn1ActionPerformed
 
     private void savebtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtn1ActionPerformed
-       
-        if(CarBrand.getSelectedIndex() > 0){
-        Double rentalPrice = DayGap();// get the rental price for the selected car
-        renting(rentalPrice); // call the renting() method with the rental price as an argument
-        SimpleDateFormat dFormat = new SimpleDateFormat("MMM-dd-yyyy");
-        String date = dFormat.format(jDateChooser1.getDate());
-        String date2 = dFormat.format(jDateChooser2.getDate());
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{CarBrand.getSelectedItem(),
-                                  numberplate1.getText(),
-                                  namefield1.getText(),
-                                  date, 
-                                  date2,    
-                                  dpfield.getText(),                                                                        
-        });
-        clearbtn1ActionPerformed(evt);
-      try {
-            FileWriter fileWriter = new FileWriter("Rent_Info.txt", true);
-            if (total > 0) {
-                fileWriter.write(namefield1.getText() + " - Total amount to pay: ₱" + df.format(total) + "\n");
-            }
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-        else if(CarBrand.getSelectedIndex() == 0){
-        JOptionPane.showMessageDialog(null, "Please, select a plate number.", "Error", JOptionPane.ERROR_MESSAGE);
+     
+    // Get the rental date and return date from the date choosers
+    SimpleDateFormat dFormat = new SimpleDateFormat("MMM-dd-yyyy");
+    Date rentalDate = jDateChooser1.getDate();
+    Date returnDate = jDateChooser2.getDate();
+
+    // Calculate the number of days between the rental date and return date
+    long diffInMillies = Math.abs(returnDate.getTime() - rentalDate.getTime());
+    long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+    // Determine the maximum downpayment limit based on the number of days
+    double maxDownpayment = 0;
+        if(diffInDays <= 6) {
+        maxDownpayment = DOWNPAYMENT_LIMITS[0];
+    } 
+        else if(diffInDays <= 14) {
+        maxDownpayment = DOWNPAYMENT_LIMITS[1];
+    } 
+        else if(diffInDays > 14){
+        maxDownpayment = DOWNPAYMENT_LIMITS[2];
     }
 
+    // Get the downpayment input from the text field
+    double downpayment = Double.parseDouble(dpfield.getText());
+
+    // Check if the downpayment input is more than the maximum downpayment limit
+        if (downpayment > maxDownpayment) {
+        JOptionPane.showMessageDialog(null, "Downpayment cannot be more than ₱" + maxDownpayment + " for this number of days.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+        else{
+        Double rentalPrice = DayGap();// get the rental price for the selected car
+        renting(rentalPrice); // call the renting() method with the rental price as an argument   
+    }
+    // Your existing code to add the values to the jTable1
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    Object[] row = new Object[6];
+    row[0] = CarBrand.getSelectedItem();
+    row[1] = numberplate1.getText();
+    row[2] = namefield1.getText();
+    row[3] = dFormat.format(rentalDate);
+    row[4] = dFormat.format(returnDate);
+    row[5] = downpayment;
+    model.addRow(row);
+    clearbtn1ActionPerformed(evt);                                        
     }//GEN-LAST:event_savebtn1ActionPerformed
     
     private void CarBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarBrandActionPerformed
@@ -742,79 +778,123 @@ public class RENT_RETURN extends javax.swing.JFrame {
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/bigcar1.png")));
             CarPic.setIcon(carPicIcon);
+            CarPic.setText(""); 
+            enablecomponents();
         }
         else if(CarBrand.getSelectedItem().equals("MITSHUBISHI MONTERO SPORTS")){
             Plate =CarPlate[2].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/bigcar2.png")));
             CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();   
         }
         else if(CarBrand.getSelectedItem().equals("TOYOTA LAND CRUISER")){
             Plate =CarPlate[3].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/bigcar3_landcruiser.png")));
-            CarPic.setIcon(carPicIcon);            
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();   
         }
         else if(CarBrand.getSelectedItem().equals("TOYOTA HILUX CONQUEST")){
             Plate =CarPlate[4].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/bigcar4.png"))) ;
-            CarPic.setIcon(carPicIcon);           
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();   
         }
         else if(CarBrand.getSelectedItem().equals("HONDA CIVIC TYPE-R")){
             Plate =CarPlate[5].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/familycar1.png")));
-            CarPic.setIcon(carPicIcon);            
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();               
         }
         else if(CarBrand.getSelectedItem().equals("NISSAN ALMERA")){
             Plate =CarPlate[6].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/familycar2.png")));
-            CarPic.setIcon(carPicIcon);            
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();              
         }
         else if(CarBrand.getSelectedItem().equals("FORD S-MAX")){
             Plate =CarPlate[7].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/familycar3_fordSMAX.png")));
-            CarPic.setIcon(carPicIcon);           
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();              
         }
         else if(CarBrand.getSelectedItem().equals("TOYOTA VIOS")){
             Plate =CarPlate[8].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/familycar4_vios.png")));
-            CarPic.setIcon(carPicIcon);            
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();             
         }
         else if(CarBrand.getSelectedItem().equals("TOYOTA HIACE")){
             Plate =CarPlate[9].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/vancar1.png")));
             CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();             
         }
         else if(CarBrand.getSelectedItem().equals("VOLKSWAGEN VWT1|1950")){
             Plate =CarPlate[10].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/vancar2volkswagen_van.png")));
-            CarPic.setIcon(carPicIcon);            
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();               
         }
         else if(CarBrand.getSelectedItem().equals("HYUNDAI STAREX")){
             Plate =CarPlate[11].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/vancar3starex.png")));
-            CarPic.setIcon(carPicIcon);            
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();              
         }
         else if(CarBrand.getSelectedItem().equals("FOTON TRAVELLER XL")){
             Plate =CarPlate[12].toString();
             numberplate1.setText(Plate);
             carPicIcon = new ImageIcon((getClass().getResource("/CarPicture/vancar4_foton_traveler_xl.png")));
-            CarPic.setIcon(carPicIcon);            
+            CarPic.setIcon(carPicIcon);
+            CarPic.setText("");
+            
+            enablecomponents();  
+
         }
         else{
             Plate =CarPlate[0].toString();
             numberplate1.setText(Plate);
-            CarPic.setIcon(carPicIcon); 
+            CarPic.setIcon(null); 
+            CarPic.setText("[Select a Car Brand]");
+            namefield1.setEnabled(false);           
+            jDateChooser1.setEnabled(false);  
+            jDateChooser2.setEnabled(false);   
+            dpfield.setEnabled(false);  
+            savebtn1.setEnabled(false);   
+            clearbtn1.setEnabled(false); 
+                  
         }
-           
+         
     }//GEN-LAST:event_CarBrandActionPerformed
     
     private void dpfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpfieldActionPerformed

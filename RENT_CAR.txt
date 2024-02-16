@@ -20,3 +20,14 @@ Plate No.: JKQ4230
 Downpayment: ₱9789789789
 Remaining Balance: ₱-9.789746589E9
 ///////////////////////
+
+///////////////////////
+CJ Car Rental Services
+   (Rent a Car)
+///////////////////////
+Customer Name: Josh Andrei Magcasdasd
+Car Brand: FORD RANGER RAPTOR
+Plate No.: GMK4567
+Downpayment: ₱5436
+Remaining Balance: ₱22564.0
+///////////////////////
