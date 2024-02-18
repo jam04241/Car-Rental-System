@@ -254,8 +254,8 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void logbtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logbtnKeyPressed
         
-        String[] Userpass1 = {"Cjrent.Josh", "Cjrent.Gesef", "Cjrent.Carl","Cjrent.Denie"};
-        String[] Userpass2 = {"passwordnijosh", "14346", "passwordnicarl", "passwordnimaam"};      
+        String[] Userpass1 = {"username","Cjrent.Josh", "Cjrent.Gesef", "Cjrent.Carl","Cjrent.Denie"};
+        String[] Userpass2 = {"password","passwordnijosh", "14346", "passwordnicarl", "passwordnimaam"};      
         HashMap<String, String> credentials = new HashMap<>();
         
         for (int i = 0; i < Userpass1.length; i++) {
