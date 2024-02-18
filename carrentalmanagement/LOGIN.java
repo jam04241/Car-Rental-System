@@ -208,8 +208,8 @@ public class LOGIN extends javax.swing.JFrame {
         //  passfield.setText("password");
         //  if(usertxt.getText().contentEquals("Cjrent@gmail.com") && passfield.getText().equals("password") && evt.getSource() == logbtn)
         
-        String[] Userpass1 = {"Cjrent.Josh", "Cjrent.Gesef", "Cjrent.Carl","Cjrent.Denie"};
-        String[] Userpass2 = {"passwordnijosh", "14346", "passwordnicarl", "passwordnimaam"};      
+        String[] Userpass1 = {"username","Cjrent.Josh", "Cjrent.Gesef", "Cjrent.Carl","Cjrent.Denie"};
+        String[] Userpass2 = {"password","passwordnijosh", "14346", "passwordnicarl", "passwordnimaam"};      
         HashMap<String, String> credentials = new HashMap<>();
         
         for (int i = 0; i < Userpass1.length; i++) {
