@@ -2,6 +2,7 @@ package carrentalmanagement;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -14,7 +15,7 @@ public class LOGIN extends javax.swing.JFrame {
         initComponents();
         this.setTitle("CJ Car Rental Services");
         Image icon = new ImageIcon(this.getClass().getResource("/Logopic/Lamborghini.png")).getImage();
-        this.setIconImage(icon);        
+        this.setIconImage(icon);       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -205,24 +206,28 @@ public class LOGIN extends javax.swing.JFrame {
         //  usertxt.equals("username") && passfield.equals(12345) && evt.getSource() == logbtn
         //  usertxt.setText("username");
         //  passfield.setText("password");
-        if(usertxt.getText().contentEquals("username") && passfield.getText().equals("password") && evt.getSource() == logbtn){
+        //  if(usertxt.getText().contentEquals("Cjrent@gmail.com") && passfield.getText().equals("password") && evt.getSource() == logbtn)
+        
+        String[] Userpass1 = {"Cjrent.Josh", "Cjrent.Gesef", "Cjrent.Carl","Cjrent.Denie"};
+        String[] Userpass2 = {"passwordnijosh", "14346", "passwordnicarl", "passwordnimaam"};      
+        HashMap<String, String> credentials = new HashMap<>();
+        
+        for (int i = 0; i < Userpass1.length; i++) {
+            credentials.put(Userpass1[i], Userpass2[i]);           
+        }
+        
+        if(credentials.get(usertxt.getText()) != null && credentials.get(usertxt.getText()).equals(passfield.getText())){ /*&& evt.getSource() == logbtn*/ 
             this.dispose();            
-            JOptionPane.showMessageDialog(null, "WELCOME " + usertxt.getText()+ " TO CAR RENTAL SERVICES");
+            JOptionPane.showMessageDialog(null, "Welcome [" + usertxt.getText()+ "] To CJ Car Rental Services","Welcome",JOptionPane.INFORMATION_MESSAGE);
             HOME home = new HOME();
             home.setVisible(rootPaneCheckingEnabled);
         }       
-        else if(!usertxt.getText().contentEquals("username") && passfield.getText().equals("password") && evt.getSource() == logbtn){
-            JOptionPane.showMessageDialog(rootPane, "Incorrect Username Credential \nPlease Try Again");
-        }
-        else if(usertxt.getText().contentEquals("username") && !passfield.getText().equals("password") && evt.getSource() == logbtn){
-            JOptionPane.showMessageDialog(rootPane, "Incorrect Password Credential \nPlease Try Again");
-        }
-        else if(!usertxt.getText().isEmpty() && !passfield.getText().isEmpty() && evt.getSource() == logbtn){
-            JOptionPane.showMessageDialog(rootPane, "Incorrect Input Credential \nPlease Try Again");
-        }
-        else{
+        else if(usertxt.getText().isEmpty() || passfield.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "You didn't input any Credentials!");
-        }   
+        }  
+        else {
+            JOptionPane.showMessageDialog(null, "Incorrect Input Credential \nPlease Try Again");
+        }
     }//GEN-LAST:event_logbtnActionPerformed
 
     private void jLabel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel1AncestorAdded
@@ -248,24 +253,27 @@ public class LOGIN extends javax.swing.JFrame {
     }//GEN-LAST:event_passfieldActionPerformed
 
     private void logbtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logbtnKeyPressed
-        if(usertxt.getText().contentEquals("username") && passfield.getText().equals("password") && evt.getKeyCode()== KeyEvent.VK_ENTER){
+        
+        String[] Userpass1 = {"Cjrent.Josh", "Cjrent.Gesef", "Cjrent.Carl","Cjrent.Denie"};
+        String[] Userpass2 = {"passwordnijosh", "14346", "passwordnicarl", "passwordnimaam"};      
+        HashMap<String, String> credentials = new HashMap<>();
+        
+        for (int i = 0; i < Userpass1.length; i++) {
+            credentials.put(Userpass1[i], Userpass2[i]);           
+        }
+        
+        if(credentials.get(usertxt.getText()) != null && credentials.get(usertxt.getText()).equals(passfield.getText())){ /*&& evt.getSource() == logbtn*/ 
             this.dispose();            
-            JOptionPane.showMessageDialog(null, "WELCOME " + usertxt.getText()+ " TO CAR RENTAL SERVICES");
+            JOptionPane.showMessageDialog(null, "Welcome [" + usertxt.getText()+ "] To CJ Car Rental Services","Welcome",JOptionPane.INFORMATION_MESSAGE);
             HOME home = new HOME();
             home.setVisible(rootPaneCheckingEnabled);
         }       
-        else if(!usertxt.getText().contentEquals("username") && passfield.getText().equals("password") && evt.getKeyCode()== KeyEvent.VK_ENTER){
-            JOptionPane.showMessageDialog(rootPane, "Incorrect Username Credential \nPlease Try Again");
-        }
-        else if(usertxt.getText().contentEquals("username") && !passfield.getText().equals("password") && evt.getKeyCode()== KeyEvent.VK_ENTER){
-            JOptionPane.showMessageDialog(rootPane, "Incorrect Password Credential \nPlease Try Again");
-        }
-        else if(!usertxt.getText().isEmpty() && !passfield.getText().isEmpty() && evt.getKeyCode()== KeyEvent.VK_ENTER){
-            JOptionPane.showMessageDialog(rootPane, "Incorrect Input Credential \nPlease Try Again");
-        }
-        else{
+        else if(usertxt.getText().isEmpty() || passfield.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "You didn't input any Credentials!");
         }  
+        else {
+            JOptionPane.showMessageDialog(null, "Incorrect Input Credential \nPlease Try Again");
+        } 
     }//GEN-LAST:event_logbtnKeyPressed
 
     /**
@@ -293,6 +301,12 @@ public class LOGIN extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
