@@ -564,7 +564,7 @@ public class RENT_RETURN extends javax.swing.JFrame {
             }
             
         try {
-            var path = new File("RENT_CAR.txt");
+            File path = new File("RENT_CAR.txt");
             if (!path.exists()) {
                 boolean success = path.createNewFile();
             if (!success) {
